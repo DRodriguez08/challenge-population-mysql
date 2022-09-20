@@ -26,30 +26,31 @@ class DBPopulation {
   }
 
   async getCities(): Promise<City[] | undefined> {
+    const query = `select * from city`;
     const cities: City[] = await this.queryDB("select * from city");
     return cities;
   }
 
   async getCityById(id: number): Promise<City | undefined> {
-    const query = ``;
+    const query = `select * from city where id=${id}`;
     const cities: City[] = await this.queryDB(query);
     return cities[0];
   }
 
   async addCity(city: City) {
-    const query = ``;
+    const query = `insert into city (id, name, country, population) values (1001, "Santiago", "Chile", 1000000)`;
     await this.queryDB(query);
   }
 
   async deleteCityById(id: number) {
-    const query = ``;
+    const query = `delete from city where id=${id}`;
     await this.queryDB(query);
   }
 
   async updateNumberOfInhabitantsById(id: number, newPopulation: number) {
-    const query = ``;
+    const query = `update city set population=${newPopulation} where id=${id}`;
     await this.queryDB(query);
-  }
+  } 
 }
 
 export default DBPopulation;
